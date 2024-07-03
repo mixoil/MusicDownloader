@@ -12,5 +12,12 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  <StackPanel Margin="20">
+    <Button Click="ClickHandler">
+      Get started
+    </Button>
+    <TextBox></TextBox>
+    <TextBlock Margin="0 5">Tracks:</TextBlock>
+    <ListBox x:Name="tracks"/>
+  </StackPanel>
 </UserControl>

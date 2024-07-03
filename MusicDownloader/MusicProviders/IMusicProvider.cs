@@ -1,6 +1,7 @@
 ﻿using MusicDownloader.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using YoutubeMusicApi.Models;
 
 namespace MusicDownloader.MusicProviders
 {
@@ -10,8 +11,8 @@ namespace MusicDownloader.MusicProviders
     public interface IMusicProvider
     {
         /// <summary>
-        /// Get all sounds from link.
+        /// Get all playlist from link.
         /// </summary>
-        Task<List<Sound>> GetSoundsAsync(string link);
+        Task<List<Playlist>> GetPlaylistsAsync(string link);
     }
 }

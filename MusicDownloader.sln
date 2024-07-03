@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicDownloader", "MusicDow
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicDownloader.Desktop", "MusicDownloader.Desktop\MusicDownloader.Desktop.csproj", "{3452EDB5-D642-4AF7-B1CD-1FDA0B53599A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeMusicApi", "YoutubeMusicApi\YoutubeMusicApi.csproj", "{D88AAA46-4896-48BF-87C4-095929D215B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yandex.Music.Api", "Yandex.Music.Api\Yandex.Music.Api.csproj", "{151A92EC-FB8F-4E72-BB2C-560B9D221B37}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YandexMusicApi.Client", "YandexMusicApi.Client\YandexMusicApi.Client.csproj", "{BE72ACA0-5E0E-4BCD-9871-F70C793FB727}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{3452EDB5-D642-4AF7-B1CD-1FDA0B53599A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3452EDB5-D642-4AF7-B1CD-1FDA0B53599A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3452EDB5-D642-4AF7-B1CD-1FDA0B53599A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D88AAA46-4896-48BF-87C4-095929D215B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D88AAA46-4896-48BF-87C4-095929D215B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D88AAA46-4896-48BF-87C4-095929D215B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D88AAA46-4896-48BF-87C4-095929D215B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{151A92EC-FB8F-4E72-BB2C-560B9D221B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{151A92EC-FB8F-4E72-BB2C-560B9D221B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{151A92EC-FB8F-4E72-BB2C-560B9D221B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{151A92EC-FB8F-4E72-BB2C-560B9D221B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE72ACA0-5E0E-4BCD-9871-F70C793FB727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE72ACA0-5E0E-4BCD-9871-F70C793FB727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE72ACA0-5E0E-4BCD-9871-F70C793FB727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE72ACA0-5E0E-4BCD-9871-F70C793FB727}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
