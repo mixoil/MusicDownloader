@@ -1,4 +1,5 @@
 ﻿using MusicDownloader.Entities;
+using MusicDownloader.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using YoutubeMusicApi.Models;
@@ -11,8 +12,8 @@ namespace MusicDownloader.MusicProviders
     public interface IMusicProvider
     {
         /// <summary>
-        /// Get all playlist from link.
+        /// Get all playlist from provided credentials.
         /// </summary>
-        Task<List<Playlist>> GetPlaylistsAsync(string link);
+        public Task<List<Playlist>> GetPlaylistsAsync(Credentials credentials);
     }
 }

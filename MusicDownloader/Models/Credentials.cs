@@ -5,13 +5,19 @@ namespace MusicDownloader.Models
     /// <summary>
     /// TODO!!! And for every field.
     /// </summary>
-    internal sealed class Credentials
+    public sealed class Credentials
     {
         [CredentialsProperty("YandexMusicAuthToken", typeof(string))]
         public string YandexMusicAuthToken = string.Empty;
 
-        [CredentialsProperty("YoutubeMusicPlaylistId", typeof(string))]
-        public string YoutubeMusicPlaylistId = string.Empty;
+        [CredentialsProperty("YoutubeMusicAuthToken", typeof(string))]
+        public string YoutubeMusicAuthToken = string.Empty;
+
+        [CredentialsProperty("YoutubeMusicUserId", typeof(string))]
+        public string YoutubeMusicUserId = string.Empty;
+
+        [CredentialsProperty("DownloadingFolderPath", typeof(string))]
+        public string DownloadingFolderPath = string.Empty;
     }
 
     /// <summary>

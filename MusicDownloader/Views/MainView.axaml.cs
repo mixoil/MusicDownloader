@@ -34,10 +34,9 @@ public partial class MainView : UserControl
         //var dialog = new IStorageProvider();
         //var result = await dialog.ShowAsync(this);
 
-        var folder = "";
         var credentials = new CredentialsProvider().GetCredentials();
         var provider = new YtMusicProvider();
-        var playls = await provider.GetPlaylistsAsync("https://music.youtube.com/playlist?list=...");
+        var playls = await provider.GetPlaylistsAsync(credentials);
         tracks.ItemsSource = playls.Select(t => $"{t.Title} - {t.Author} - {t.PlaylistId} - {t.Count}");
             
         //var a = new Yandex.Music.Api.YandexMusicApi();
@@ -56,8 +55,11 @@ public partial class MainView : UserControl
             }
         }
 
-        var client = new YandexMusicClient(RestClient.Authorized("OAuth", "y0_Ag..."));
+        var folder = credentials.DownloadingFolderPath;
+
+        var client = new YandexMusicClient(RestClient.Authorized("OAuth", credentials.YandexMusicAuthToken));
         var s = await client.Account.GetAccountStatusAsync();
+
         foreach (var playl in playls)
         {
             
