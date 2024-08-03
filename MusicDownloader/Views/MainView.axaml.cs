@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using YandexMusicApi.Client;
 using YandexMusicApi.Client.Http;
+using MusicDownloader.Services;
 namespace MusicDownloader.Views;
 
 public partial class MainView : UserControl
@@ -34,7 +35,7 @@ public partial class MainView : UserControl
         //var result = await dialog.ShowAsync(this);
 
         var folder = "";
-
+        var credentials = new CredentialsProvider().GetCredentials();
         var provider = new YtMusicProvider();
         var playls = await provider.GetPlaylistsAsync("https://music.youtube.com/playlist?list=...");
         tracks.ItemsSource = playls.Select(t => $"{t.Title} - {t.Author} - {t.PlaylistId} - {t.Count}");
@@ -99,6 +100,4 @@ public partial class MainView : UserControl
             }
         }
     }
-
-
 }
