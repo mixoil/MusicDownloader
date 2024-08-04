@@ -12,12 +12,39 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
-  <StackPanel Margin="20">
-    <Button Click="ClickHandler">
-      Get started
-    </Button>
-    <TextBox></TextBox>
-    <TextBlock Margin="0 5">Tracks:</TextBlock>
-    <ListBox x:Name="tracks"/>
-  </StackPanel>
+  <ScrollViewer>
+    <StackPanel Margin="20">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto"></ColumnDefinition>
+          <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button 
+          Grid.Column="0" 
+          Margin="0 0 10 0" 
+          Command="{Binding SearchPlaylistsCommand}">
+          Fetch playlists
+        </Button>
+        <Button 
+          Grid.Column="1" 
+          Margin="0 0 10 0" 
+          Command="{Binding DownloadCommand}"
+          IsEnabled="{Binding IsReadyToDownload}">
+          Download
+        </Button>
+      </Grid>
+      <TextBlock
+        Margin="0 5"
+        IsEnabled="{Binding IsReadyToDownload}">
+        Playlists:
+      </TextBlock>
+      <TreeView ItemsSource="{Binding Playlists}">
+        <TreeView.ItemTemplate>
+          <TreeDataTemplate ItemsSource="{Binding SubNodes}">
+            <TextBlock Text="{Binding Title}"/>
+          </TreeDataTemplate>
+        </TreeView.ItemTemplate>
+      </TreeView>
+    </StackPanel>
+  </ScrollViewer>
 </UserControl>

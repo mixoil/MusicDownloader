@@ -7,6 +7,9 @@ namespace MusicDownloader.Models
     /// </summary>
     public sealed class Credentials
     {
+        /// <summary>
+        /// How to get token: https://github.com/MarshalX/yandex-music-api/discussions/513#discussioncomment-2729781
+        /// </summary>
         [CredentialsProperty("YandexMusicAuthToken", typeof(string))]
         public string YandexMusicAuthToken = string.Empty;
 
