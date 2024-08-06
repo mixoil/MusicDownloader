@@ -32,4 +32,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\SpinnerModalView.axaml.cs">
+      <DependentUpon>SpinnerModalView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

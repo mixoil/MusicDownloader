@@ -16,7 +16,7 @@ using Playlist = YoutubeMusicApi.Models.Playlist;
 
 namespace MusicDownloader.ViewModels;
 
-public class MainViewModel : ViewModelBase
+public sealed class MainViewModel : ViewModelBase
 {
     public ICommand SearchPlaylistsCommand { get; }
     public ICommand DownloadCommand { get; }
@@ -30,13 +30,16 @@ public class MainViewModel : ViewModelBase
 
     public bool IsReadyToDownload => Playlists is not null;
 
+    public bool IsLoading { get; private set; }
+
+
     private Credentials _credentials;
     private List<Playlist>? _playlists;
 
     public MainViewModel()
     {
-        SearchPlaylistsCommand = ReactiveCommand.Create(SetPlaylistsTreeAsync);
-        DownloadCommand = ReactiveCommand.Create(DownloadAsync);
+        SearchPlaylistsCommand = ReactiveCommand.Create(() => LoadingAction(SetPlaylistsTreeAsync));
+        DownloadCommand = ReactiveCommand.Create(() => LoadingAction(DownloadAsync));
 
         _credentials = new CredentialsProvider().GetCredentials();
     }
@@ -108,9 +111,27 @@ public class MainViewModel : ViewModelBase
         }
     }
 
+    private async Task LoadingAction(Func<Task> action)
+    {
+        try
+        {
+            IsLoading = true;
+            UpdateView();
+
+            await action();
+
+            IsLoading = false;
+            UpdateView();
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
     private void UpdateView()
     {
         OnPropertyChanged(nameof(Playlists));
         OnPropertyChanged(nameof(IsReadyToDownload));
+        OnPropertyChanged(nameof(IsLoading));
     }
 }
