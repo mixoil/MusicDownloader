@@ -81,8 +81,26 @@ namespace YoutubeMusicApi.Models
                     var plTrack = new PlaylistTrack();
 
                     var trackInfo = track.MusicResponsiveListItemRenderer;
-                    plTrack.Duration = TimeSpan.Parse(track.MusicResponsiveListItemRenderer.FixedColumns.FirstOrDefault()!.MusicResponsiveListItemFixedColumnRenderer
-                        .Text.Runs.FirstOrDefault()!.Text.Trim());
+
+                    try
+                    {
+                        var stringDuration = track.MusicResponsiveListItemRenderer.FixedColumns.FirstOrDefault()!.MusicResponsiveListItemFixedColumnRenderer
+                            .Text.Runs.FirstOrDefault()!.Text.Trim();
+                        var splittedDuration = stringDuration.Split(':');
+
+                        plTrack.Duration = splittedDuration.Length switch
+                        {
+                            1 => TimeSpan.FromSeconds(int.Parse(splittedDuration[0])),
+                            2 => new TimeSpan(0, int.Parse(splittedDuration[0]), int.Parse(splittedDuration[1])),
+                            3 => new TimeSpan(int.Parse(splittedDuration[0]), int.Parse(splittedDuration[1]), int.Parse(splittedDuration[2])),
+                            _ => throw new FormatException("Unknown duration format")
+                        };
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
                     var cols = track.MusicResponsiveListItemRenderer.FlexColumns;
                     plTrack.Name = cols.FirstOrDefault()!.MusicResponsiveListItemFlexColumnRenderer.Text.Runs.FirstOrDefault()!.Text.Trim();
                     plTrack.Author = cols.Skip(1).FirstOrDefault().MusicResponsiveListItemFlexColumnRenderer.Text.Runs.FirstOrDefault()!.Text.Trim();

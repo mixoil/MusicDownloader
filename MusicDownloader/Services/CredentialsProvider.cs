@@ -11,7 +11,7 @@ namespace MusicDownloader.Services
     /// <summary>
     /// TODO!!! And for every field and method.
     /// </summary>
-    internal sealed class CredentialsProvider
+    internal sealed class CredentialsProvider : ICredentialsProvider
     {
         private const string CredentialsFileName = "downloaderCredentials.xml";
 
