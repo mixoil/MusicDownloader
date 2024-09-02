@@ -33,6 +33,8 @@ namespace MusicDownloader.Services
 
                 plFolder = dirinfo.FullName; //иногда символы в названии папки обрезаются, поэтому берем действительный путь
 
+                var indexFormat = new string('0', GetNumberBitDebpth(playlist.Tracks.Count));
+
                 foreach (var (track, i) in playlist.Tracks.Select((t, i) => (t, i)))
                 {
                     try
@@ -51,7 +53,7 @@ namespace MusicDownloader.Services
 
                         if (data.DownloadParameters.AddOrderNumberPrefix)
                         {
-                            trackFileName = $"{i + 1}. {trackFileName}";
+                            trackFileName = $"{(i + 1).ToString(indexFormat)}. {trackFileName}";
                         }
 
                         trackFileName = TransformStringToValidWinFilename(trackFileName);
@@ -75,6 +77,20 @@ namespace MusicDownloader.Services
                 str = str.Replace(c, '_');
             }
             return str;
+        }
+
+        /// <remarks><paramref name="num"/> supposed to be positive.</remarks>
+        private int GetNumberBitDebpth(int num)
+        {
+            var depth = 0;
+
+            while (num > 0)
+            {
+                depth++;
+                num = num / 10;
+            }
+
+            return depth;
         }
     }
 }
