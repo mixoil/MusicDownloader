@@ -2,7 +2,7 @@
 using MusicDownloader.Models;
 using MusicDownloader.MusicProviders;
 using MusicDownloader.Services;
-using MusicDownloader.Views;
+using MusicDownloader.Mvvm.Views;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using YandexMusicApi.Client;
 using YandexMusicApi.Client.Http;
-using Playlist = YoutubeMusicApi.Models.Playlist;
+using MusicDownloader.Mvvm.Infrastructure;
 
-namespace MusicDownloader.ViewModels;
+namespace MusicDownloader.Mvvm.ViewModels;
 
 public sealed class MainViewModel : ViewModelBase
 {
@@ -53,13 +53,13 @@ public sealed class MainViewModel : ViewModelBase
     {
         try
         {
-            var provider = new YtMusicProvider(); 
-            
+            var provider = new YtMusicProvider();
+
             var playlists = await provider.GetPlaylistsAsync(_credentials);
 
             _dataToDownload = new DataToDownload();
             _dataToDownload.Playlists = playlists
-                .Select(p => new PlaylistToDownload 
+                .Select(p => new PlaylistToDownload
                 {
                     Title = p.Title,
                     Tracks = p.Tracks.Select(t => new TrackToDownload

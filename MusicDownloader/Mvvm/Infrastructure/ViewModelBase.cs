@@ -1,7 +1,7 @@
 ﻿using ReactiveUI;
 using System.ComponentModel;
 
-namespace MusicDownloader.ViewModels;
+namespace MusicDownloader.Mvvm.Infrastructure;
 
 public class ViewModelBase : ReactiveObject, INotifyPropertyChanged
 {

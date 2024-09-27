@@ -20,6 +20,7 @@
     <PackageReference Include="DialogHost.Avalonia" Version="0.8.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
     <PackageReference Include="Google.Apis.YouTube.v3" Version="1.68.0.3421" />
+    <PackageReference Include="Ninject" Version="3.3.6" />
     <PackageReference Include="TagLibSharp" Version="2.3.0" />
   </ItemGroup>
 
@@ -33,11 +34,5 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Views\SpinnerModalView.axaml.cs">
-      <DependentUpon>SpinnerModalView.axaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 </Project>
