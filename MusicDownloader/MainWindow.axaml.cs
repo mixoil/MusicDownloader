@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace MusicDownloader.Mvvm.Views;
+namespace MusicDownloader;
 
 public partial class MainWindow : Window
 {

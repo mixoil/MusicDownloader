@@ -1,9 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-
-using MusicDownloader.ViewModels;
-using MusicDownloader.Views;
+using MusicDownloader.Mvvm.ViewModels;
+using MusicDownloader.Mvvm.Views;
 
 namespace MusicDownloader;
 
