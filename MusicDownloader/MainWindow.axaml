@@ -8,6 +8,9 @@
         Width="1300" Height="800"
         x:Class="MusicDownloader.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="MusicDownloader">
+        Title="MusicDownloader"
+        Opened="OnOpened"
+        Closed="OnClosed"
+        >
         <views:MainView />
 </Window>

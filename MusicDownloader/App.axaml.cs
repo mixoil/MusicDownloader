@@ -3,11 +3,15 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using MusicDownloader.Mvvm.ViewModels;
 using MusicDownloader.Mvvm.Views;
+using MusicDownloader.NinjectRoot;
+using Ninject;
 
 namespace MusicDownloader;
 
 public partial class App : Application
 {
+    public static StandardKernel Root;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -31,5 +35,10 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    public static void InitializeRoot()
+    {
+        Root = RootFactory.CreateRoot();
     }
 }
