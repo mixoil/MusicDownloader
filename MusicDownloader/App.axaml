@@ -8,5 +8,7 @@
     <Application.Styles>
         <FluentTheme />
         <dialogHostAvalonia:DialogHostStyles />
+        <StyleInclude
+          Source="avares://Avalonia.Controls.TreeDataGrid/Themes/Fluent.axaml"/>
     </Application.Styles>
 </Application>

@@ -26,7 +26,7 @@ namespace MusicDownloader.Models
     /// <summary>
     /// TODO!!! And for every field.
     /// </summary>
-    internal sealed class CredentialsPropertyAttribute : Attribute
+    public sealed class CredentialsPropertyAttribute : Attribute
     {
         public readonly string Name;
         public readonly Type PropType;

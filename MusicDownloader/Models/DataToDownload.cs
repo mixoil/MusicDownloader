@@ -5,7 +5,7 @@ namespace MusicDownloader.Models
     /// <summary>
     /// Data to download.
     /// </summary>
-    internal sealed class DataToDownload
+    public sealed class DataToDownload
     {
         /// <summary>
         /// Playlists.

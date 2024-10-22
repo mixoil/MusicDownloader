@@ -5,7 +5,7 @@ namespace MusicDownloader.Models
     /// <summary>
     /// Track info for downloading.
     /// </summary>
-    internal sealed class TrackToDownload
+    public sealed class TrackToDownload
     {
         /// <summary>
         /// Internal track Id in source of downloading.

@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using System.Collections.ObjectModel;
+
 namespace MusicDownloader.Mvvm.Views;
 
 public partial class MainView : UserControl
