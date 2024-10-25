@@ -3,11 +3,14 @@ using System.Collections.Generic;
 namespace MusicDownloader.Models
 {
     /// <summary>
-    /// Current state of folder, containing playlist subfolders. Also contains downloading settings.
-    /// App will save this state as XML file in folder.
+    /// "Music profile state" (or just "Profile state") - current state of folder, containing playlist subfolders (with tracks files).
+    /// Also contains downloading settings. App will generate file describing this state in folder, that contains playlist subfolders.
     /// </summary>
-    public sealed class MusicFolderState
+    public sealed class ProfileState
     {
+        /// <summary>
+        /// Download parameters.
+        /// </summary>
         public DownloadParameters Parameters { get; set; }
 
         /// <summary>
@@ -15,7 +18,7 @@ namespace MusicDownloader.Models
         /// </summary>
         public IList<PlaylistState> PlaylistStates { get; set; }
 
-        public MusicFolderState(IList<PlaylistState> playlistStates)
+        public ProfileState(IList<PlaylistState> playlistStates)
         {
             PlaylistStates = playlistStates ?? throw new ArgumentNullException(nameof(playlistStates));
         }

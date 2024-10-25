@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using MusicDownloader.Mvvm.Infrastructure;
 using System.Collections.ObjectModel;
+using MusicDownloader.Models;
 
 namespace MusicDownloader.Mvvm.ViewModels
 {
@@ -13,13 +14,15 @@ namespace MusicDownloader.Mvvm.ViewModels
         public ObservableCollection<Person> Children { get; } = new();
     }
 
-    public sealed class MusicTableViewModel : ViewModelBase
+    public sealed class ProfileDisplayViewModel : ViewModelBase
     {
+        private readonly ProfileState Profile;
+
         private ObservableCollection<Person> _people;
 
         public HierarchicalTreeDataGridSource<Person> PersonSource { get; }
 
-        public MusicTableViewModel()
+        public ProfileDisplayViewModel()
         {
             _people = new ObservableCollection<Person>()
             {

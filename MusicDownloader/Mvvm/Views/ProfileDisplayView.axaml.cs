@@ -3,12 +3,12 @@ using MusicDownloader.Mvvm.ViewModels;
 
 namespace MusicDownloader.Mvvm.Views;
 
-public partial class MusicTableView : UserControl
+public partial class ProfileDisplayView : UserControl
 {
-    public MusicTableView()
+    public ProfileDisplayView()
     {
         InitializeComponent();
 
-        DataContext = new MusicTableViewModel();
+        DataContext = new ProfileDisplayViewModel();
     }
 }

@@ -13,16 +13,16 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*"></RowDefinition>
-    </Grid.RowDefinitions>
-    <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClipToBounds="True">
-      <Grid Margin="20">
-        <Border 
-          BorderBrush="Gray" BorderThickness="1"
-          CornerRadius="5" Padding="15 3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-          MinHeight="300">
+  <Border
+    BorderBrush="Gray" BorderThickness="1"
+    CornerRadius="5" Margin="15 3 15 15" Padding="15 3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+    MinHeight="300">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"></RowDefinition>
+      </Grid.RowDefinitions>
+      <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClipToBounds="True">
+        <Grid Margin="20">
           <Grid>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -73,7 +73,7 @@
               IsVisible="{Binding IsReadyToSearch}">
               Playlists:
             </TextBlock>
-            <views:MusicTableView Grid.ColumnSpan="4"
+            <views:ProfileDisplayView Grid.ColumnSpan="4"
               Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <!--
             <TreeView HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -95,8 +95,8 @@
             </TreeView>
             -->
           </Grid>
-        </Border>
-      </Grid>
-    </ScrollViewer>
-  </Grid>
+        </Grid>
+      </ScrollViewer>
+    </Grid>
+  </Border>
 </UserControl>
