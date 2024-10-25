@@ -1,4 +1,5 @@
 ﻿using MusicDownloader.Models;
+using System.Threading.Tasks;
 
 namespace MusicDownloader.Services
 {
@@ -7,6 +8,10 @@ namespace MusicDownloader.Services
     /// </summary>
     interface IProfileStateProvider
     {
-        ProfileState LoadOrCreateProfileState();
+        /// <summary>
+        /// Asynchronously loads profile state from file. If file doesn't exist, file will be created.
+        /// </summary>
+        /// <returns><see cref="Task"/>, providing <see cref="ProfileState"/> instance.</returns>
+        Task<ProfileState> LoadOrCreateProfileStateAsync();
     }
 }

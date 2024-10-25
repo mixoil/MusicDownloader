@@ -18,9 +18,13 @@ namespace MusicDownloader.Models
         /// </summary>
         public IList<PlaylistState> PlaylistStates { get; set; }
 
-        public ProfileState(IList<PlaylistState> playlistStates)
+        public ProfileState(
+            IList<PlaylistState> playlistStates,
+            DownloadParameters parameters
+            )
         {
             PlaylistStates = playlistStates ?? throw new ArgumentNullException(nameof(playlistStates));
+            Parameters = parameters ?? throw new ArgumentNullException(nameof(parameters));
         }
     }
 }

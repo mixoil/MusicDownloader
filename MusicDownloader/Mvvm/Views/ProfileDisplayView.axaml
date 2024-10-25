@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="clr-namespace:MusicDownloader.Mvvm.ViewModels"
+             xmlns:views="clr-namespace:MusicDownloader.Mvvm.Views"
              x:Class="MusicDownloader.Mvvm.Views.ProfileDisplayView"
              x:DataType="vm:ProfileDisplayViewModel">
   <Design.DataContext>
@@ -19,85 +20,6 @@
     <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
       <Button></Button>
     </Border>
-    <TabControl Margin="5" TabStripPlacement="Left" Grid.Row="1">
-      <TabItem Header="Tab 1">
-        <TextBlock Margin="5">This is tab 1 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 3">
-        <TreeDataGrid Source="{Binding PersonSource}"/>
-      </TabItem>
-      <TabItem Header="Tab 4">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 6">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-      <TabItem Header="Tab 2">
-        <TextBlock Margin="5">This is tab 2 content</TextBlock>
-      </TabItem>
-    </TabControl>
+    <views:PlaylistsTabsView Grid.Row="1"/>
   </Grid>
 </UserControl>
