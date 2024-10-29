@@ -1,7 +1,15 @@
-﻿namespace MusicDownloader.Services
+﻿using MusicDownloader.Models;
+
+namespace MusicDownloader.Services
 {
-    internal interface ICredentialsProvider
+    /// <summary>
+    /// Provider of credentials from configuration .xml file.
+    /// </summary>
+    public interface ICredentialsProvider
     {
-        //TODO: add methods
+        /// <summary>
+        /// Returns <see cref="Credentials"/> filled from configuration .xml file.
+        /// </summary>
+        Credentials GetCredentials();
     }
 }

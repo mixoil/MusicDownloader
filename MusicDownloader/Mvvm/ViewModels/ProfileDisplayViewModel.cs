@@ -3,6 +3,8 @@ using Avalonia.Controls;
 using MusicDownloader.Mvvm.Infrastructure;
 using System.Collections.ObjectModel;
 using MusicDownloader.Models;
+using MusicDownloader.Services;
+using System;
 
 namespace MusicDownloader.Mvvm.ViewModels
 {
@@ -16,14 +18,21 @@ namespace MusicDownloader.Mvvm.ViewModels
 
     public sealed class ProfileDisplayViewModel : ViewModelBase
     {
-        private readonly ProfileState Profile;
+        /// <summary>
+        /// Whether the folder is initialized.
+        /// </summary>
+        public bool IsMusicFolderInitialized => _profileStateProvider.IsProfileInitialized();
 
+        private readonly IProfileStateProvider _profileStateProvider;
+        private readonly ProfileState Profile;
         private ObservableCollection<Person> _people;
 
         public HierarchicalTreeDataGridSource<Person> PersonSource { get; }
 
-        public ProfileDisplayViewModel()
+        public ProfileDisplayViewModel(IProfileStateProvider profileStateProvider)
         {
+            _profileStateProvider = profileStateProvider ?? throw new ArgumentNullException(nameof(profileStateProvider));
+
             _people = new ObservableCollection<Person>()
             {
                 new Person

@@ -1,6 +1,6 @@
 ﻿namespace MusicDownloader.Services
 {
-    internal interface IDownloader
+    public interface IDownloader
     {
         //TODO: add methods
     }

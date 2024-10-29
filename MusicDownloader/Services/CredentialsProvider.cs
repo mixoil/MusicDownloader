@@ -8,15 +8,15 @@ using System.Reflection;
 
 namespace MusicDownloader.Services
 {
-    /// <summary>
-    /// TODO!!! And for every field and method.
-    /// </summary>
-    internal sealed class CredentialsProvider : ICredentialsProvider
+    /// <inheritdoc cref="ICredentialsProvider"/>
+    public sealed class CredentialsProvider : ICredentialsProvider
     {
         private const string CredentialsFileName = "downloaderCredentials.xml";
 
+        /// <inheritdoc/>
         public Credentials GetCredentials()
         {
+            //TODO: stop app if some creds are not filled
             var doc = GetDocFromFile(CredentialsFileName);
 
             var nodeList = doc.GetElementsByTagName("property");

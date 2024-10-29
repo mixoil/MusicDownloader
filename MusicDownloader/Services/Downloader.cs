@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace MusicDownloader.Services
 {
-    internal sealed class Downloader : IDownloader
+    public sealed class Downloader : IDownloader
     {
         private const string DownloadingFormat = ".mp3";
 
