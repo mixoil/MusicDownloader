@@ -2,13 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              x:Class="MusicDownloader.App"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-
-    <Application.Styles>
-        <FluentTheme />
-        <dialogHostAvalonia:DialogHostStyles />
-        <StyleInclude
-          Source="avares://Avalonia.Controls.TreeDataGrid/Themes/Fluent.axaml"/>
-    </Application.Styles>
+             RequestedThemeVariant="Dark"> <!-- App supports only dark theme -->
+  <Application.Styles>
+    <FluentTheme />
+    <dialogHostAvalonia:DialogHostStyles />
+    <StyleInclude
+      Source="avares://Avalonia.Controls.TreeDataGrid/Themes/Fluent.axaml"/>
+  </Application.Styles>
+  <Application.Resources>
+    <SolidColorBrush x:Key="AppBackgroundColor">#212529</SolidColorBrush>
+  </Application.Resources>
 </Application>

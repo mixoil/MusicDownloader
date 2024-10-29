@@ -1,0 +1,25 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{StaticResource AppBackgroundColor}">
+      <StackPanel>
+        <Border Classes="main-view-content-panel-border" Margin="10">
+            <TextBlock>
+              Border Template
+            </TextBlock>
+        </Border>
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <Styles.Resources>
+    <SolidColorBrush x:Key="ContentPanelBackgroundColor">#2a2e32</SolidColorBrush>
+  </Styles.Resources>
+  
+  <Style Selector="Border.main-view-content-panel-border">
+    <Setter Property="BoxShadow" Value="4 4 9 0 Black" />
+    <Setter Property="CornerRadius" Value="6" />
+    <Setter Property="Padding" Value="10" />
+    <Setter Property="Background" Value="{StaticResource ContentPanelBackgroundColor}" />
+  </Style>
+</Styles>

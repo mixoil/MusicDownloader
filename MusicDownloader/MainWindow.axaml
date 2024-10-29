@@ -11,6 +11,7 @@
         Title="MusicDownloader"
         Opened="OnOpened"
         Closed="OnClosed"
+        Background="{StaticResource AppBackgroundColor}"
         >
         <views:MainView />
 </Window>
