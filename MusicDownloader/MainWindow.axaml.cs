@@ -12,7 +12,7 @@ public partial class MainWindow : Window
 
     private void OnOpened(object? sender, EventArgs e)
     {
-        InitializeApp();
+        //InitializeApp();
     }
 
     private void OnClosed(object? sender, EventArgs e)
@@ -20,8 +20,8 @@ public partial class MainWindow : Window
 
     }
 
-    private void InitializeApp()
-    {
-        App.InitializeRoot();
-    }
+    //private void InitializeApp()
+    //{
+    //    App.InitializeRoot();
+    //}
 }

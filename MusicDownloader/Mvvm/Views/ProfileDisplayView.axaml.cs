@@ -1,5 +1,7 @@
 using Avalonia.Controls;
 using MusicDownloader.Mvvm.ViewModels;
+using MusicDownloader.Services;
+using Ninject;
 
 namespace MusicDownloader.Mvvm.Views;
 
@@ -9,6 +11,6 @@ public partial class ProfileDisplayView : UserControl
     {
         InitializeComponent();
 
-        DataContext = new ProfileDisplayViewModel();
+        DataContext = new ProfileDisplayViewModel(App.Root.Get<IProfileStateProvider>());
     }
 }
