@@ -25,12 +25,33 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
           </Grid.RowDefinitions>
-          <Grid>
+          <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="auto"></ColumnDefinition>
-              <ColumnDefinition Width="auto"></ColumnDefinition>
-              <ColumnDefinition Width="auto"></ColumnDefinition>
+              <ColumnDefinition Width="0.33*"></ColumnDefinition>
+              <ColumnDefinition Width="0.33*"></ColumnDefinition>
+              <ColumnDefinition Width="0.33*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Classes="main-view-content-panel-border">
+              <Grid>
+                <TextBlock>
+                  Block 1
+                </TextBlock>
+              </Grid>
+            </Border>
+            <Border Grid.Column="1" Classes="main-view-content-panel-border" Margin="10 0 10 0">
+              <Grid>
+                <TextBlock>
+                  Block 2
+                </TextBlock>
+              </Grid>
+            </Border>
+            <Border Grid.Column="2" Classes="main-view-content-panel-border">
+              <Grid>
+                <TextBlock>
+                  Block 3
+                </TextBlock>
+              </Grid>
+            </Border>
           </Grid>
           <!--
           <Button 
@@ -72,8 +93,18 @@
           </TextBlock>
             
           -->
-          <views:ProfileDisplayView
-            Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+          <TextBox 
+            Grid.Row="1" 
+            Watermark="Search not implemented yet..."
+            Margin="0 10 0 10"
+            Width="400"
+            HorizontalAlignment="Left"
+            />
+
+          <Border Grid.Row="2" Classes="main-view-content-panel-border">
+            <views:ProfileDisplayView
+               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+          </Border>
         </Grid>
       </Grid>
     </ScrollViewer>
