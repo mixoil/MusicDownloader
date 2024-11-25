@@ -20,6 +20,11 @@ namespace MusicDownloader.Services
         /// <inheritdoc/>
         public async Task<ProfileState> LoadOrCreateProfileStateAsync()
         {
+            if (!IsProfileInitialized())
+            {
+                InitializeProfile();
+            }
+
             throw new NotImplementedException();
         }
 
@@ -43,6 +48,28 @@ namespace MusicDownloader.Services
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Creates profile folder if not exists and creates state file.
+        /// </summary>
+        private void InitializeProfile()
+        {
+            var credentials = _credentialsProvider.GetCredentials();
+
+            var folderPath = credentials.DownloadingFolderPath;
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            var stateFilePath = Path.Combine(folderPath, StateFileName);
+
+            if (!File.Exists(stateFilePath))
+            {
+                using var stream = File.Create(stateFilePath);
+            }
         }
     }
 }
