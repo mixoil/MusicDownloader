@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MusicDownloader.Services
 {
@@ -18,46 +19,90 @@ namespace MusicDownloader.Services
         }
 
         /// <inheritdoc/>
-        public async Task<ProfileState> LoadOrCreateProfileStateAsync()
+        public async Task<ProfileState?> LoadProfileStateAsync()
         {
-            if (!IsProfileInitialized())
+            try
             {
-                InitializeProfile();
-            }
+                ProfileState? res = null;
 
-            throw new NotImplementedException();
+                if (!IsProfileInitialized())
+                {
+                    throw new InvalidOperationException("Profile state is not initialized.");
+                }
+
+                var folderPath = GetDownloadingFolderPath();
+                var stateFilePath = Path.Combine(folderPath, StateFileName);
+
+                using (FileStream fs = new FileStream(stateFilePath, FileMode.Open))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(ProfileState));
+                    res = await Task.Run(() => xmlSerializer.Deserialize(fs) as ProfileState);
+                }
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                //log
+                return null;
+            }
+        }
+
+        /// <inheritdoc/>
+        public ProfileState? CreateProfileState()
+        {
+            try
+            {
+                if (!IsProfileInitialized())
+                {
+                    return InitializeProfile();
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                //log
+                return null;
+            }
         }
 
         /// <inheritdoc/>
         public bool IsProfileInitialized()
         {
-            var credentials = _credentialsProvider.GetCredentials();
-
-            var folderPath = credentials.DownloadingFolderPath;
-
-            if (!Directory.Exists(folderPath))
+            try
             {
+                var folderPath = GetDownloadingFolderPath();
+
+                if (!Directory.Exists(folderPath))
+                {
+                    return false;
+                }
+
+                var stateFilePath = Path.Combine(folderPath, StateFileName);
+
+                if (!File.Exists(stateFilePath))
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //log
                 return false;
             }
-
-            var stateFilePath = Path.Combine(folderPath, StateFileName);
-
-            if (!File.Exists(stateFilePath))
-            {
-                return false;
-            }
-
-            return true;
         }
 
         /// <summary>
         /// Creates profile folder if not exists and creates state file.
         /// </summary>
-        private void InitializeProfile()
+        private ProfileState? InitializeProfile()
         {
-            var credentials = _credentialsProvider.GetCredentials();
+            ProfileState? res = null;
 
-            var folderPath = credentials.DownloadingFolderPath;
+            var folderPath = GetDownloadingFolderPath();
 
             if (!Directory.Exists(folderPath))
             {
@@ -69,7 +114,24 @@ namespace MusicDownloader.Services
             if (!File.Exists(stateFilePath))
             {
                 using var stream = File.Create(stateFilePath);
+
+                res = ProfileState.CreateEmpty();
+
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ProfileState));
+                xmlSerializer.Serialize(stream, res);
             }
+
+            return res;
+        }
+
+        /// <summary>
+        /// Returns downloading folder's path.
+        /// </summary>
+        private string GetDownloadingFolderPath()
+        {
+            var credentials = _credentialsProvider.GetCredentials();
+
+            return credentials.DownloadingFolderPath;
         }
     }
 }

@@ -9,10 +9,16 @@ namespace MusicDownloader.Services
     public interface IProfileStateProvider
     {
         /// <summary>
-        /// Asynchronously loads profile state from file. If file doesn't exist, file will be created.
+        /// Asynchronously loads profile state from file.
         /// </summary>
         /// <returns><see cref="Task"/>, providing <see cref="ProfileState"/> instance.</returns>
-        Task<ProfileState> LoadOrCreateProfileStateAsync();
+        Task<ProfileState?> LoadProfileStateAsync();
+
+        /// <summary>
+        /// Creates profile state file and returns it.
+        /// </summary>
+        /// <returns><see cref="ProfileState"/> instance.</returns>
+        ProfileState? CreateProfileState();
 
         /// <summary>
         /// Determines whether music profile exists and initialized (state file exists).

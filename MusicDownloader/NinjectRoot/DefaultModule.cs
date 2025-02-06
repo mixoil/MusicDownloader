@@ -1,4 +1,5 @@
-﻿using MusicDownloader.MusicProviders;
+﻿using Avalonia.Threading;
+using MusicDownloader.MusicProviders;
 using MusicDownloader.Mvvm.Infrastructure;
 using MusicDownloader.Services;
 using Ninject.Modules;

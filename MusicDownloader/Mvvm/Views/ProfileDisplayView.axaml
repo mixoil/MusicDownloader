@@ -28,7 +28,11 @@
         <RowDefinition Height="auto"></RowDefinition>
       </Grid.RowDefinitions>
       <Label Grid.Row="0">Your music folder doesn't exist or not initialized.</Label>
-      <Button Grid.Row="1">Initialize music folder</Button>
+      <Button
+        Grid.Row="1" 
+        Command="{Binding InitProfileStateCommand}">
+          Initialize music folder
+      </Button>
     </Grid>
     <Grid Grid.Row="1" IsVisible="{Binding IsMusicFolderInitialized}">
       <views:PlaylistsTabsView/>
