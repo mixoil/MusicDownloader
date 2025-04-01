@@ -1,5 +1,4 @@
 using Avalonia.Controls;
-using MusicDownloader.Mvvm.Infrastructure;
 using MusicDownloader.Mvvm.ViewModels;
 using MusicDownloader.Services;
 using Ninject;
