@@ -44,7 +44,9 @@ namespace MusicDownloader.Models
         /// </summary>
         public static ProfileState CreateEmpty()
         {
-            return new ProfileState(new List<PlaylistState>(), new DownloadParameters());
+            return new ProfileState(new List<PlaylistState> { new PlaylistState { Title = "Test playlist title", Tracks = [
+                new TrackState { Album = "Test alb", Author = "Test aut", Duration = new TimeSpan(0, 2, 1), InternalAlbumId = "00", InternalTrackId = "01", Name = "Test track name", OriginalAlbum = "Orig test alb", OriginalAuthor = "Orig test aut", OriginalDuration = new TimeSpan(0, 2, 1), OriginalName = " Orig test track name" }
+                ] } }, new DownloadParameters());
         }
     }
 }

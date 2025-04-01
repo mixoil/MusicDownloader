@@ -4,7 +4,6 @@ using MusicDownloader.Services;
 using System;
 using ReactiveUI;
 using System.Reactive;
-using System.Threading.Tasks;
 
 namespace MusicDownloader.Mvvm.ViewModels
 {
@@ -20,9 +19,6 @@ namespace MusicDownloader.Mvvm.ViewModels
         /// </summary>
         public bool IsMusicFolderInitialized => _profileStateProvider.IsProfileInitialized();
 
-        public ProfileState? ProfileState => _profileState;
-
-        private ProfileState? _profileState;
         private readonly IProfileStateProvider _profileStateProvider;
 
         public ProfileDisplayViewModel(IProfileStateProvider profileStateProvider)
@@ -31,22 +27,9 @@ namespace MusicDownloader.Mvvm.ViewModels
 
             InitProfileStateCommand = ReactiveCommand.Create(() =>
             {
-                _profileState = _profileStateProvider.CreateProfileState();
+                _ = _profileStateProvider.CreateProfileState();
                 OnPropertyChanged(nameof(IsMusicFolderInitialized));
             });
-
-            LoadProfile();
-        }
-
-        private void LoadProfile()
-        {
-            if (_profileStateProvider.IsProfileInitialized())
-            {
-                Task.Run(async () =>
-                {
-                    _profileState = await _profileStateProvider.LoadProfileStateAsync();
-                });
-            }
         }
     }
 }
