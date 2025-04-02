@@ -11,31 +11,25 @@
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
     <vm:PlaylistsTabsViewModel />
   </Design.DataContext>
-  <TabControl Margin="5" TabStripPlacement="Left" Grid.Row="1" ItemsSource="{Binding Playlists}">
-    <DataTemplate>
-      <TextBlock Text="{Binding Title}" />
-    </DataTemplate>
-    <!-- TODO: figure out something instead of TabControl for playlists displaying. TabControl doesn't work properly
-    <ItemsControl ItemsSource="{Binding Path=Playlists}" >
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+
+
+    <ItemsControl ItemsSource="{Binding Playlists}">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
-          <TabItem Header="{Binding Title}">
-            <TextBlock Margin="5">This is tab 1 content</TextBlock>
-          </TabItem>
+          <Button Command="{Binding SetPlaylist}">
+            <AccessText Text="{Binding Title}" TextWrapping="Wrap" TextAlignment="Center"/>
+          </Button>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
     </ItemsControl>
-    <TabItem Header="Tab 1">
-      <TextBlock Margin="5">This is tab 1 content</TextBlock>
-    </TabItem>
-    <TabItem Header="Tab 2">
-      <TextBlock Margin="5">This is tab 2 content</TextBlock>
-    </TabItem>
-    <TabItem Header="Tab 3">
-      <TreeDataGrid Source="{Binding PersonSource}"/>
-    </TabItem>
-    <TabItem Header="Tab 4">
-      <TextBlock Margin="5">This is tab 2 content</TextBlock>
-    </TabItem> -->
-  </TabControl>
+  </Grid>
 </UserControl>

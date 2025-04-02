@@ -17,6 +17,13 @@ namespace MusicDownloader.Mvvm.ViewModels
 
         public List<PlaylistState>? Playlists => _profileState?.PlaylistStates;
 
+        /// <summary>
+        /// Constructor for designer.
+        /// </summary>
+#pragma warning disable CS8618
+        public PlaylistsTabsViewModel() { }
+#pragma warning restore CS8618
+
         public PlaylistsTabsViewModel(IProfileStateProvider profileStateProvider)
         {
             _profileStateProvider = profileStateProvider ?? throw new ArgumentNullException(nameof(profileStateProvider));
@@ -31,6 +38,7 @@ namespace MusicDownloader.Mvvm.ViewModels
                 Task.Run(async () =>
                 {
                     _profileState = await _profileStateProvider.LoadProfileStateAsync();
+                    OnPropertyChanged(nameof(Playlists));
                 });
             }
         }

@@ -21,6 +21,13 @@ namespace MusicDownloader.Mvvm.ViewModels
 
         private readonly IProfileStateProvider _profileStateProvider;
 
+        /// <summary>
+        /// Constructor for designer.
+        /// </summary>
+#pragma warning disable CS8618
+        public ProfileDisplayViewModel() { }
+#pragma warning restore CS8618
+
         public ProfileDisplayViewModel(IProfileStateProvider profileStateProvider)
         {
             _profileStateProvider = profileStateProvider ?? throw new ArgumentNullException(nameof(profileStateProvider));
