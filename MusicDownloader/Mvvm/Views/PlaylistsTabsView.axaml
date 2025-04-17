@@ -13,23 +13,32 @@
   </Design.DataContext>
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="200" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
-      <RowDefinition />
-      <RowDefinition />
+      <RowDefinition Height="60" />
+      <RowDefinition Height="*" />
     </Grid.RowDefinitions>
 
-
-    <ItemsControl ItemsSource="{Binding Playlists}">
-      <ItemsControl.ItemTemplate>
-        <DataTemplate>
-          <Button Command="{Binding SetPlaylist}">
-            <AccessText Text="{Binding Title}" TextWrapping="Wrap" TextAlignment="Center"/>
-          </Button>
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
-    </ItemsControl>
+    <Border Grid.Column="0" Grid.Row="0">
+      <ItemsControl ItemsSource="{Binding PlaylistBtns}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Button Command="{Binding SelectPlaylistCommand}">
+              <AccessText Text="{Binding BtnTitle}" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </Border>
+    
+    <Border Grid.Column="1" Grid.Row="0">
+      <Label Content="{Binding CurrentPlaylist}"></Label>
+    </Border>
+    
+    <Border>
+      
+    </Border>
   </Grid>
 </UserControl>
