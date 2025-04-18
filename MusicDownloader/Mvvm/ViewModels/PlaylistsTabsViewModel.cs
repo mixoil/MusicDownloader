@@ -24,6 +24,10 @@ namespace MusicDownloader.Mvvm.ViewModels
             .Select(p => new PlaylistBtnViewModel(p, SelectPlaylist))
             .ToList();
 
+        public List<TrackViewModel>? Tracks => _currentPlaylist?.Tracks?
+            .Select(t => new TrackViewModel(t))
+            .ToList();
+
         public string? CurrentPlaylist => _currentPlaylist?.Title;
 
         /// <summary>
@@ -56,6 +60,7 @@ namespace MusicDownloader.Mvvm.ViewModels
         {
             _currentPlaylist = playlist;
             OnPropertyChanged(nameof(CurrentPlaylist));
+            OnPropertyChanged(nameof(Tracks));
         }
     }
 
@@ -77,6 +82,18 @@ namespace MusicDownloader.Mvvm.ViewModels
             {
                 _playlistSettingAction(_playlist);
             });
+        }
+    }
+
+    public sealed class TrackViewModel : ViewModelBase
+    {
+        private readonly TrackState _trackState;
+
+        public string TrackTitle => _trackState.Name;
+
+        public TrackViewModel(TrackState trackState)
+        {
+            _trackState = trackState ?? throw new ArgumentNullException(nameof(trackState)); ;
         }
     }
 }

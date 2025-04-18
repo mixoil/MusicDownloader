@@ -36,9 +36,15 @@
     <Border Grid.Column="1" Grid.Row="0">
       <Label Content="{Binding CurrentPlaylist}"></Label>
     </Border>
-    
-    <Border>
-      
+
+    <Border Grid.Column="1" Grid.Row="1">
+      <ItemsControl ItemsSource="{Binding Tracks}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Label Content="{Binding TrackTitle}"></Label>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
     </Border>
   </Grid>
 </UserControl>
