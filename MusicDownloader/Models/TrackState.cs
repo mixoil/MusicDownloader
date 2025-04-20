@@ -1,12 +1,9 @@
-﻿
-
-using System;
+﻿using System;
 
 namespace MusicDownloader.Models
 {
     public sealed class TrackState 
     {
-
         /// <summary>
         /// Internal track Id in source of downloading.
         /// </summary>
@@ -37,7 +34,6 @@ namespace MusicDownloader.Models
         /// </summary>
         public TimeSpan? Duration { get; set; }
 
-
         /// <summary>
         /// Track's name in original music source.
         /// </summary>
@@ -57,5 +53,7 @@ namespace MusicDownloader.Models
         /// Track's duration time in original music source.
         /// </summary>
         public TimeSpan OriginalDuration { get; set; }
+
+        public bool AddedManualy { get; set; }
     }
 }
