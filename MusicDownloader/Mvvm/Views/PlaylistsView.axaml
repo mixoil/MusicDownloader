@@ -1,0 +1,169 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:MusicDownloader.Mvvm.ViewModels"
+             x:Class="MusicDownloader.Mvvm.Views.PlaylistsView"
+             x:DataType="vm:PlaylistsViewModel">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:PlaylistsViewModel />
+  </Design.DataContext>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClipToBounds="True">
+      <Grid Margin="20">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+          </Grid.RowDefinitions>
+          <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="0.33*"></ColumnDefinition>
+              <ColumnDefinition Width="0.33*"></ColumnDefinition>
+              <ColumnDefinition Width="0.33*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Classes="main-view-content-panel-border">
+              <Grid>
+                <TextBlock>
+                  Block 1
+                </TextBlock>
+              </Grid>
+            </Border>
+            <Border Grid.Column="1" Classes="main-view-content-panel-border" Margin="10 0 10 0">
+              <Grid>
+                <TextBlock>
+                  Block 2
+                </TextBlock>
+              </Grid>
+            </Border>
+            <Border Grid.Column="2" Classes="main-view-content-panel-border">
+              <Grid>
+                <TextBlock>
+                  Block 3
+                </TextBlock>
+              </Grid>
+            </Border>
+          </Grid>
+          <!--
+          <Button 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Margin="0 0 10 0" 
+            Command="{Binding SearchPlaylistsCommand}">
+            Fetch playlists
+          </Button>
+          <Button 
+            Grid.Row="0" 
+            Grid.Column="1" 
+            Margin="0 0 10 0" 
+            Command="{Binding SearchInDownloadingSourceCommand}"
+            IsEnabled="{Binding IsReadyToSearch}">
+            Search in downloading source
+          </Button>
+          <Button
+            Grid.Row="0"
+            Grid.Column="2"
+            Margin="0 0 10 0"
+            Command="{Binding DownloadCommand}"
+            IsEnabled="{Binding IsReadyToDownload}">
+            Download
+          </Button>
+          <TextBlock
+            Grid.Row="0"
+            Grid.Column="3"
+            Margin="0 5"
+            IsVisible="{Binding IsLoading}">
+            Loading...
+          </TextBlock>
+          <TextBlock
+            Grid.Row="1"
+            Grid.ColumnSpan="4"
+            Margin="0 5"
+            IsVisible="{Binding IsReadyToSearch}">
+            Playlists:
+          </TextBlock>
+            
+          -->
+          <TextBox
+            Grid.Row="1"
+            Watermark="Search not implemented yet..."
+            Margin="0 10 0 10"
+            Width="400"
+            HorizontalAlignment="Left"
+            />
+
+          <Border Grid.Row="2" Classes="main-view-content-panel-border">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+              </Grid.RowDefinitions>
+              <!--
+    <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+      <Button></Button>
+    </Border>
+    -->
+              <Grid Grid.Row="1" IsVisible="{Binding !IsMusicFolderInitialized}">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="auto"></RowDefinition>
+                  <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0">Your music folder doesn't exist or not initialized.</Label>
+                <Button
+                  Grid.Row="1"
+                  Command="{Binding InitProfileStateCommand}">
+                  Initialize music folder
+                </Button>
+              </Grid>
+              <Grid Grid.Row="1" IsVisible="{Binding IsMusicFolderInitialized}">
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+
+                  <Border Grid.Column="0" Grid.Row="0">
+                    <ItemsControl ItemsSource="{Binding PlaylistBtns}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                          <Button Command="{Binding SelectPlaylistCommand}">
+                            <AccessText Text="{Binding BtnTitle}" TextWrapping="Wrap" TextAlignment="Center"/>
+                          </Button>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Border>
+
+                  <Border Grid.Column="1" Grid.Row="0">
+                    <Label Content="{Binding CurrentPlaylist}"></Label>
+                  </Border>
+
+                  <Border Grid.Column="1" Grid.Row="1">
+                    <ItemsControl ItemsSource="{Binding Tracks}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                          <Label Content="{Binding TrackTitle}"></Label>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Border>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Border>
+        </Grid>
+      </Grid>
+    </ScrollViewer>
+  </Grid>
+</UserControl>

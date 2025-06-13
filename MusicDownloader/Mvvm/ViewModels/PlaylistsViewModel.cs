@@ -10,8 +10,18 @@ using System.Threading.Tasks;
 
 namespace MusicDownloader.Mvvm.ViewModels
 {
-    public sealed class PlaylistsTabsViewModel : ViewModelBase
+    public sealed class PlaylistsViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Initialize profile state command.
+        /// </summary>
+        public ReactiveCommand<Unit, Unit> InitProfileStateCommand { get; }
+
+        /// <summary>
+        /// Whether the folder is initialized.
+        /// </summary>
+        public bool IsMusicFolderInitialized => _profileStateProvider.IsProfileInitialized();
+
         private readonly IProfileStateProvider _profileStateProvider;
 
         private ProfileState? _profileState;
@@ -34,12 +44,18 @@ namespace MusicDownloader.Mvvm.ViewModels
         /// Constructor for designer.
         /// </summary>
 #pragma warning disable CS8618
-        public PlaylistsTabsViewModel() { }
+        public PlaylistsViewModel() { }
 #pragma warning restore CS8618
 
-        public PlaylistsTabsViewModel(IProfileStateProvider profileStateProvider)
+        public PlaylistsViewModel(IProfileStateProvider profileStateProvider)
         {
             _profileStateProvider = profileStateProvider ?? throw new ArgumentNullException(nameof(profileStateProvider));
+
+            InitProfileStateCommand = ReactiveCommand.Create(() =>
+            {
+                _ = _profileStateProvider.CreateProfileState();
+                OnPropertyChanged(nameof(IsMusicFolderInitialized));
+            });
 
             LoadProfile();
         }

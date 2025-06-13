@@ -5,12 +5,12 @@ using Ninject;
 
 namespace MusicDownloader.Mvvm.Views;
 
-public partial class PlaylistsTabsView : UserControl
+public partial class PlaylistsView : UserControl
 {
-    public PlaylistsTabsView()
+    public PlaylistsView()
     {
         InitializeComponent();
 
-        DataContext = new PlaylistsTabsViewModel(App.Root.Get<IProfileStateProvider>());
+        DataContext = new PlaylistsViewModel(App.Root.Get<IProfileStateProvider>());
     }
 }
