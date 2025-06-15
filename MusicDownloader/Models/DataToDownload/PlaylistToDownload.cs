@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MusicDownloader.Models
+namespace MusicDownloader.Models.DataToDownload
 {
     public sealed class PlaylistToDownload
     {

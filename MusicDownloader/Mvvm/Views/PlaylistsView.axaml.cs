@@ -11,6 +11,10 @@ public partial class PlaylistsView : UserControl
     {
         InitializeComponent();
 
-        DataContext = new PlaylistsViewModel(App.Root.Get<IProfileStateProvider>());
+        DataContext = new PlaylistsViewModel(
+            App.Root.Get<IPersistedProfileProvider>(),
+            App.Root.Get<IExternalProfileLoader>(),
+            App.Root.Get<IAggregatedStateProvider>()
+            );
     }
 }

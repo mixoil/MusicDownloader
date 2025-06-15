@@ -33,6 +33,9 @@
               <Grid>
                 <TextBlock>
                   Block 1
+                  <Button Command="{Binding LoadExternalProfileCommand}">
+                    Load external tracks
+                  </Button >
                 </TextBlock>
               </Grid>
             </Border>

@@ -1,11 +1,8 @@
 ﻿using System;
 
-namespace MusicDownloader.Models
+namespace MusicDownloader.Models.AggregatedProfile
 {
-    /// <summary>
-    /// Track info for downloading.
-    /// </summary>
-    public sealed class TrackToDownload
+    public sealed class AggregatedTrack
     {
         /// <summary>
         /// Internal track Id in source of downloading.
@@ -37,7 +34,6 @@ namespace MusicDownloader.Models
         /// </summary>
         public TimeSpan? Duration { get; set; }
 
-
         /// <summary>
         /// Track's name in original music source.
         /// </summary>
@@ -57,5 +53,10 @@ namespace MusicDownloader.Models
         /// Track's duration time in original music source.
         /// </summary>
         public TimeSpan OriginalDuration { get; set; }
+
+        /// <summary>
+        /// Aggregation status.
+        /// </summary>
+        public TrackAggregationStatus Status { get; set; }
     }
 }

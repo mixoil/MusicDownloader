@@ -13,6 +13,7 @@ using System.Windows.Input;
 using YandexMusicApi.Client;
 using YandexMusicApi.Client.Http;
 using MusicDownloader.Mvvm.Infrastructure;
+using MusicDownloader.Models.DataToDownload;
 
 namespace MusicDownloader.Mvvm.ViewModels;
 
@@ -21,8 +22,6 @@ public sealed class MainViewModel : ViewModelBase
     public ICommand SearchPlaylistsCommand { get; }
     public ICommand SearchInDownloadingSourceCommand { get; }
     public ICommand DownloadCommand { get; }
-
-    public string Greeting => "Welcome to Avalonia!";
 
     public ObservableCollection<Node>? Playlists =>
         _dataToDownload is not null ? new ObservableCollection<Node>(_dataToDownload.Playlists

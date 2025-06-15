@@ -6,6 +6,7 @@ using YandexMusicApi.Client;
 using System.Linq;
 using Path = System.IO.Path;
 using System.Collections.Generic;
+using MusicDownloader.Models.DataToDownload;
 
 namespace MusicDownloader.Services
 {

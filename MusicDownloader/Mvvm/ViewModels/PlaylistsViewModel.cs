@@ -1,4 +1,5 @@
-﻿using MusicDownloader.Models;
+﻿using MusicDownloader.Models.AggregatedProfile;
+using MusicDownloader.Models.ExternalProfile;
 using MusicDownloader.Mvvm.Infrastructure;
 using MusicDownloader.Services;
 using ReactiveUI;
@@ -18,19 +19,26 @@ namespace MusicDownloader.Mvvm.ViewModels
         public ReactiveCommand<Unit, Unit> InitProfileStateCommand { get; }
 
         /// <summary>
+        /// External tracks loading command.
+        /// </summary>
+        public ReactiveCommand<Unit, Unit> LoadExternalProfileCommand { get; }
+        
+        /// <summary>
         /// Whether the folder is initialized.
         /// </summary>
         public bool IsMusicFolderInitialized => _profileStateProvider.IsProfileInitialized();
 
-        private readonly IProfileStateProvider _profileStateProvider;
+        private readonly IPersistedProfileProvider _profileStateProvider;
+        private readonly IExternalProfileLoader _externalProfileLoader;
+        private readonly IAggregatedStateProvider _aggregatedStateProvider;
 
-        private ProfileState? _profileState;
+        private AggregatedProfile? _aggregatedProfile;
 
-        private PlaylistState? _currentPlaylist;
+        private AggregatedPlaylist? _currentPlaylist;
 
-        public ProfileState? ProfileState => _profileState;
+        private ExternalProfile? _externalProfile;
 
-        public List<PlaylistBtnViewModel>? PlaylistBtns => _profileState?.PlaylistStates
+        public List<PlaylistBtnViewModel>? PlaylistBtns => _aggregatedProfile?.Playlists
             .Select(p => new PlaylistBtnViewModel(p, SelectPlaylist))
             .ToList();
 
@@ -47,14 +55,27 @@ namespace MusicDownloader.Mvvm.ViewModels
         public PlaylistsViewModel() { }
 #pragma warning restore CS8618
 
-        public PlaylistsViewModel(IProfileStateProvider profileStateProvider)
+        public PlaylistsViewModel(
+            IPersistedProfileProvider profileStateProvider,
+            IExternalProfileLoader externalProfileLoader,
+            IAggregatedStateProvider aggregatedStateProvider
+            )
         {
             _profileStateProvider = profileStateProvider ?? throw new ArgumentNullException(nameof(profileStateProvider));
+            _externalProfileLoader = externalProfileLoader ?? throw new ArgumentNullException(nameof(externalProfileLoader));
+            _aggregatedStateProvider = aggregatedStateProvider ?? throw new ArgumentNullException(nameof(aggregatedStateProvider));
 
             InitProfileStateCommand = ReactiveCommand.Create(() =>
             {
                 _ = _profileStateProvider.CreateProfileState();
                 OnPropertyChanged(nameof(IsMusicFolderInitialized));
+            });
+
+            LoadExternalProfileCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                _externalProfile = await _externalProfileLoader.LoadProfileAsync();
+                _aggregatedProfile = await _aggregatedStateProvider.MixPersistedWithExternalAsync(_externalProfile);
+                OnPropertyChanged(nameof(PlaylistBtns));
             });
 
             LoadProfile();
@@ -66,13 +87,13 @@ namespace MusicDownloader.Mvvm.ViewModels
             {
                 Task.Run(async () =>
                 {
-                    _profileState = await _profileStateProvider.LoadProfileStateAsync();
+                    _aggregatedProfile = await _aggregatedStateProvider.LoadPersistedAsync();
                     OnPropertyChanged(nameof(PlaylistBtns));
                 });
             }
         }
 
-        private void SelectPlaylist(PlaylistState playlist)
+        private void SelectPlaylist(AggregatedPlaylist playlist)
         {
             _currentPlaylist = playlist;
             OnPropertyChanged(nameof(CurrentPlaylist));
@@ -86,10 +107,10 @@ namespace MusicDownloader.Mvvm.ViewModels
 
         public string BtnTitle => _playlist.Title;
 
-        private readonly Action<PlaylistState> _playlistSettingAction;
-        private readonly PlaylistState _playlist;
+        private readonly Action<AggregatedPlaylist> _playlistSettingAction;
+        private readonly AggregatedPlaylist _playlist;
 
-        public PlaylistBtnViewModel(PlaylistState playlist, Action<PlaylistState> playlistSettingAction)
+        public PlaylistBtnViewModel(AggregatedPlaylist playlist, Action<AggregatedPlaylist> playlistSettingAction)
         {
             _playlist = playlist ?? throw new ArgumentNullException(nameof(playlist));
             _playlistSettingAction = playlistSettingAction ?? throw new ArgumentNullException(nameof(playlistSettingAction));
@@ -103,11 +124,11 @@ namespace MusicDownloader.Mvvm.ViewModels
 
     public sealed class TrackViewModel : ViewModelBase
     {
-        private readonly TrackState _trackState;
+        private readonly AggregatedTrack _trackState;
 
         public string TrackTitle => _trackState.Name;
 
-        public TrackViewModel(TrackState trackState)
+        public TrackViewModel(AggregatedTrack trackState)
         {
             _trackState = trackState ?? throw new ArgumentNullException(nameof(trackState)); ;
         }

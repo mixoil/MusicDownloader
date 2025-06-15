@@ -1,8 +1,11 @@
 ﻿using System;
 
-namespace MusicDownloader.Models
+namespace MusicDownloader.Models.DataToDownload
 {
-    public sealed class TrackState 
+    /// <summary>
+    /// Track info for downloading.
+    /// </summary>
+    public sealed class TrackToDownload
     {
         /// <summary>
         /// Internal track Id in source of downloading.
@@ -53,7 +56,5 @@ namespace MusicDownloader.Models
         /// Track's duration time in original music source.
         /// </summary>
         public TimeSpan OriginalDuration { get; set; }
-
-        public bool AddedManualy { get; set; }
     }
 }

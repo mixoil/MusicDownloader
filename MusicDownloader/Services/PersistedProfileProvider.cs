@@ -1,4 +1,4 @@
-﻿using MusicDownloader.Models;
+﻿using MusicDownloader.Models.PersistedProfile;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -6,24 +6,24 @@ using System.Xml.Serialization;
 
 namespace MusicDownloader.Services
 {
-    /// <inheritdoc cref="IProfileStateProvider"/>
-    public class ProfileStateProvider : IProfileStateProvider
+    /// <inheritdoc cref="IPersistedProfileProvider"/>
+    public class PersistedProfileProvider : IPersistedProfileProvider
     {
         private const string StateFileName = "ProfileState.xml";
 
         private readonly ICredentialsProvider _credentialsProvider;
 
-        public ProfileStateProvider(ICredentialsProvider credentialsProvider)
+        public PersistedProfileProvider(ICredentialsProvider credentialsProvider)
         {
             _credentialsProvider = credentialsProvider ?? throw new ArgumentNullException(nameof(credentialsProvider));
         }
 
         /// <inheritdoc/>
-        public async Task<ProfileState?> LoadProfileStateAsync()
+        public async Task<PersistedProfile?> LoadProfileStateAsync()
         {
             try
             {
-                ProfileState? res = null;
+                PersistedProfile? res = null;
 
                 if (!IsProfileInitialized())
                 {
@@ -35,8 +35,8 @@ namespace MusicDownloader.Services
 
                 using (FileStream fs = new FileStream(stateFilePath, FileMode.Open))
                 {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(ProfileState));
-                    res = await Task.Run(() => xmlSerializer.Deserialize(fs) as ProfileState);
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(PersistedProfile));
+                    res = await Task.Run(() => xmlSerializer.Deserialize(fs) as PersistedProfile);
                 }
 
                 return res;
@@ -49,7 +49,7 @@ namespace MusicDownloader.Services
         }
 
         /// <inheritdoc/>
-        public ProfileState? CreateProfileState()
+        public PersistedProfile? CreateProfileState()
         {
             try
             {
@@ -98,9 +98,9 @@ namespace MusicDownloader.Services
         /// <summary>
         /// Creates profile folder if not exists and creates state file.
         /// </summary>
-        private ProfileState? InitializeProfile()
+        private PersistedProfile? InitializeProfile()
         {
-            ProfileState? res = null;
+            PersistedProfile? res = null;
 
             var folderPath = GetDownloadingFolderPath();
 
@@ -115,9 +115,9 @@ namespace MusicDownloader.Services
             {
                 using var stream = File.Create(stateFilePath);
 
-                res = ProfileState.CreateEmpty();
+                res = PersistedProfile.CreateEmpty();
 
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ProfileState));
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(PersistedProfile));
                 xmlSerializer.Serialize(stream, res);
             }
 

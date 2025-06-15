@@ -28,8 +28,16 @@ namespace MusicDownloader.NinjectRoot
                 .To<Downloader>()
                 .InSingletonScope();
 
-            Bind<IProfileStateProvider>()
-                .To<ProfileStateProvider>()
+            Bind<IPersistedProfileProvider>()
+                .To<PersistedProfileProvider>()
+                .InSingletonScope();
+
+            Bind<IAggregatedStateProvider>()
+                .To<AggregatedStateProvider>()
+                .InSingletonScope();
+
+            Bind<IExternalProfileLoader>()
+                .To<YtExternalProfileLoader>()
                 .InSingletonScope();
         }
     }

@@ -3,7 +3,7 @@
 namespace MusicDownloader.Models
 {
     /// <summary>
-    /// TODO!!! And for every field.
+    /// TODO!!! And descr. for every field.
     /// </summary>
     public sealed class Credentials
     {
@@ -24,7 +24,7 @@ namespace MusicDownloader.Models
     }
 
     /// <summary>
-    /// TODO!!! And for every field.
+    /// TODO!!! And descr. for every field.
     /// </summary>
     public sealed class CredentialsPropertyAttribute : Attribute
     {
